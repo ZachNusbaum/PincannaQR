@@ -8,10 +8,14 @@ import {
 } from 'react-navigation';
 
 import SimpleScanner from './simpleScanner';
+import ValidateCode from './validateCode';
 
 const AppNavigator = createBottomTabNavigator({
   Home: {
     screen: SimpleScanner
+  },
+  Validate: {
+    screen: ValidateCode
   }
 });
 

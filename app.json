@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.pincanna.qrscanner",
-      "buildNumber": "2"
+      "buildNumber": "5"
     }
   }
 }

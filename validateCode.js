@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontSize: 24
   }
 });
-export default class SimpleScanner extends React.Component {
+export default class ValidateCode extends React.Component {
   state = {
     hasCameraPermission: null,
     scannedCode: null,
@@ -31,16 +31,10 @@ export default class SimpleScanner extends React.Component {
 
   saveCode = async code => {
     try {
-      const saved = await fetch('https://pincannaqr-api.herokuapp.com/', {
-        method: 'POST',
-        body: JSON.stringify({ qr_code: code }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const saved = await fetch('https://pincannaqr-api.herokuapp.com/validated/' + code);
       const data = await saved.json();
-      if (saved.ok) alert('Saved!');
-      if (!saved.ok) alert(data.errors[0].message);
+      if (saved.ok) alert('success ' + JSON.stringify(data));
+      if (!saved.ok) alert('error' + JSON.stringift(data));
       this.setState({ scannedCode: null, scannedType: null });
       console.log(saved);
     } catch (err) {
@@ -69,7 +63,7 @@ export default class SimpleScanner extends React.Component {
         />
         <Text>{this.state.scannedCode}</Text>
         <Button
-          title="Save Code"
+          title="Validate Code"
           disabled={!this.state.scannedCode}
           onPress={() => this.saveCode(this.state.scannedCode)}
         />
